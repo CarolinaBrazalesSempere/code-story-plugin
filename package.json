@@ -1,0 +1,22 @@
+{
+  "name": "git-blame-analyzer",
+  "version": "1.0.0",
+  "description": "Analyze git blame for specific lines with context",
+  "main": "git-blame-analyzer.ts",
+  "scripts": {
+    "start": "ts-node git-blame-analyzer.ts",
+    "build": "tsc git-blame-analyzer.ts",
+    "blame": "ts-node git-blame-analyzer.ts"
+  },
+  "dependencies": {
+    "simple-git": "^3.20.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0"
+  },
+  "keywords": ["git", "blame", "typescript"],
+  "author": "Your Name",
+  "license": "MIT"
+}
