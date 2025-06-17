@@ -1,0 +1,38 @@
+{
+  "name": "ai-intent-explainer",
+  "displayName": "AI Intent Explainer Chat Participant",
+  "version": "0.0.1",
+  "engines": { "vscode": "^1.80.0" },
+  "activationEvents": [
+    "onChat:ai-intent.chat",
+    "onCommand:extension.sayHelloAigerim"
+  ],
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "ai-intent.chat",
+        "name": "ai-intent",
+        "fullName": "AI Intent Explainer",
+        "description": "Ask questions and get AI-powered explanations of code intent",
+        "isSticky": true,
+        "commands": [
+          { "name": "sayHello", "description": "Say hello to Aigerim" },
+          { "name": "explainCommit","description": "Explain a Git commit message or hash" }
+        ]
+      }
+    ]
+  },
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./"
+  },
+  "dependencies": {
+    "@vscode/chat-extension-utils": "0.0.0-alpha.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
