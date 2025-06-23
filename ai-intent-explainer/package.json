@@ -24,15 +24,21 @@
   },
   "main": "./out/extension.js",
   "scripts": {
+    "start": "ts-node git-blame-analyzer.ts",
+    "build": "tsc git-blame-analyzer.ts",
+    "blame": "ts-node git-blame-analyzer.ts",
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./"
   },
   "dependencies": {
+    "simple-git": "^3.20.0",
     "@vscode/chat-extension-utils": "0.0.0-alpha.5"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
     "@types/vscode": "^1.80.0",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0"
   }
 }
