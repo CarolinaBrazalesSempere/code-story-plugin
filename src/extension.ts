@@ -20,6 +20,26 @@ export function activate(context: vscode.ExtensionContext) {
   );
 }
 
+function getCurrentFileAndLine(): { filePath: string; lineNumber: number } | null {
+  const activeEditor = vscode.window.activeTextEditor;
+  
+  if (!activeEditor) {
+    return null;
+  }
+  
+  const document = activeEditor.document;
+  const selection = activeEditor.selection;
+  
+  // Get the current cursor position (line is 0-based, so we add 1)
+  const lineNumber = selection.active.line + 1;
+  const filePath = document.uri.fsPath;
+  
+  return {
+    filePath,
+    lineNumber
+  };
+}
+
 async function findGitRepository(filePath: string): Promise<string | null> {
   try {
     const absoluteFilePath = path.resolve(filePath);
@@ -284,7 +304,21 @@ const handleChat: vscode.ChatRequestHandler = async (
 
       const model = models[0];
 
-      const promptInfo = await analyzeGitBlame(filePath, parseInt(lineNumber, 10));
+      // Auto-detect from current editor
+      const currentPosition = getCurrentFileAndLine();
+      if (!currentPosition) {
+        stream.markdown('**Error:** No active editor found. Please open a file and place your cursor on the line you want to analyze.');
+        return;
+      }
+      
+      const filePath = currentPosition.filePath;
+      const lineNumber = currentPosition.lineNumber;
+      console.log('Auto-detected:', { filePath, lineNumber });
+      
+      // Show user what was detected
+      stream.markdown(`🔍 **Analyzing line ${lineNumber} in:** \`${path.basename(filePath)}\`\n\n`);
+
+      const promptInfo = await analyzeGitBlame(filePath, lineNumber);
 
       // Check if promptInfo is null before proceeding
       if (!promptInfo) {
