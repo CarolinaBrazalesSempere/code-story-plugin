@@ -16,8 +16,8 @@
         "description": "Ask questions and get AI-powered explanations of code intent",
         "isSticky": true,
         "commands": [
-          { "name": "sayHello", "description": "Say hello to Aigerim" },
-          { "name": "explainCommit","description": "Explain a Git commit message or hash" }
+          { "name": "explainCommit","description": "Explain a Git commit message or hash" },
+          { "name": "explainBlame","description": "Explain the blame for a specific line of code" }
         ]
       }
     ]
