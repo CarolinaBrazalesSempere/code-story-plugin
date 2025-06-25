@@ -1,41 +1,71 @@
-## Usage
-In order to try it, first you have to navigate to your Git repository (the project folder containing the .git directory) and run the next command.
+AI Intent Explainer
 
-### Command Line
-```bash
-ts-node git-blame-analyzer.ts <file-path> <line-number>
-```
+A VS Code Chat extension that leverages AI to explain developer intent behind Git commits.
 
-**Example:**
-```bash
-ts-node ../git-blame-analyzer/git-blame-analyzer.ts app/src/main/java/de/telekom/mobilityapp/ui/refuel/smartpay/viewmodel/RefuelSmartPayPumpViewModel.kt 42
-```
+Features
+	•	@ai-intent /sayHello
+Greets the user with “Hello, Aigerim! 👋”.
+	•	@ai-intent /explainCommit <message or hash>
+Analyzes a Git commit message or hash and explains:
+	1.	What changed
+	2.	Why it was done
+	3.	Any potential impact or follow-up needed
 
-## Requirements
+Getting Started
+	1.	Clone the repository
 
-- Node.js 14+
-- TypeScript
-- Must be run within a Git repository
+git clone https://github.com/<your-username>/ai-intent-explainer.git
+cd ai-intent-explainer
 
-## What it does
 
-1. Analyzes the specified line using `git blame`
-2. Retrieves commit information and diff context
-3. Generates a formatted prompt with:
-   - File and line details
-   - Author and commit information
-   - Git diff context
-   - Analysis questions
+	2.	Install dependencies
 
-## Installation
-
-```bash
-git clone <repository-url>
-cd git-blame-analyzer
 npm install
-```
 
-## Dependencies
 
-- `simple-git`: Git operations
-- `path`: File path resolution
+	3.	Compile the extension
+
+npm run compile
+
+
+	4.	Launch in VS Code
+	•	Open the folder in VS Code.
+	•	Press F5 (or go to Run & Debug → Launch Extension).
+	5.	Use the commands in the Chat panel:
+
+@ai-intent /sayHello
+@ai-intent /explainCommit Refactored login flow for async validation
+
+
+
+Packaging & Publishing
+
+Package
+
+Install the VS Code Extension CLI (vsce) and package your extension:
+
+npm install --global vsce
+vsce package
+# This generates ai-intent-explainer-0.0.1.vsix
+
+Publish to GitHub
+	1.	Commit and push your code to GitHub.
+	2.	On your GitHub repository, go to Releases and create a new release.
+	3.	Upload the .vsix file as a release asset and tag it with the version (e.g., v0.0.1).
+
+Publish to the VS Code Marketplace
+	1.	Ensure you have a publisher account on the Visual Studio Marketplace.
+	2.	Authenticate with vsce:
+
+vsce login <your-publisher-name>
+
+
+	3.	Publish your extension:
+
+vsce publish
+
+
+
+⸻
+
+Happy coding!
